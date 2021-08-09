@@ -131,12 +131,16 @@ Official AppsFlyer Testing Docs: https://support.appsflyer.com/hc/en-us/articles
 - ❌ Simulator - Fails build only due to Flipper-Folly issue.
 - ❌ Device - Failed build with same AppsFlyer issue as above.
 
-### “Build Active Architecture Only” to all “Yes”, with Flipper-Folly disabled
+## Attempted Fixes
+
+### “Build Active Architecture Only” to all “Yes”, with Flipper-Folly disabled. (Source: https://developer.apple.com/forums/thread/656509?answerId=626387022#626387022)
 
 **Both XCode 12.4 and XCode 12.5.1**
 - ❌ Device - Failed build with same AppsFlyer issue as above.
 
-### Ignore `arm64`, with Flipper-Folly disabled
+
+
+### Ignore `arm64`, with Flipper-Folly disabled. (Source: https://stackoverflow.com/a/63955114)
 
 **XCode 12.4 and XCode 12.5.1**
 - ❌ Device - Failed build with same AppsFlyer issue as above.
