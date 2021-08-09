@@ -1,6 +1,8 @@
 # react-native-appsflyer
 
-Testing React Native with Apps Flyer to build and track an iOS app.
+Testing React Native with AppsFlyer to build and track an iOS app. I'm finding with XCode `12.4` and `12.5.1`, I consistently get an error:
+```In /Users/brandensoropia/Library/Developer/Xcode/DerivedData/ReactNativeAppsflyer-aqckwkdpnacpiwfgqrmtxiosvotv/Build/Products/Debug-iphoneos/AppsFlyerLib.framework/AppsFlyerLib(AFSDKDevice.o), building for iOS, but linking in object file built for Mac Catalyst, file '/Users/brandensoropia/Library/Developer/Xcode/DerivedData/ReactNativeAppsflyer-aqckwkdpnacpiwfgqrmtxiosvotv/Build/Products/Debug-iphoneos/AppsFlyerLib.framework/AppsFlyerLib' for architecture arm64```
+This repo attempts to document tests and failed fixes, in hopes of finding one that works!
 
 ## Specs
 - MacOS 11.5.1
@@ -106,9 +108,9 @@ Official AppsFlyer Testing Docs: https://support.appsflyer.com/hc/en-us/articles
 1. Now, install the app by pressing play again.
 1. In AppsFlyer dashboard, wait about few minutes to see attributions!
 
-## Test Results:
+## Attempt Build Results:
 
-### Flipper-Folly Disabled
+### Flipper-Folly Disabled only
 
 **XCode 12.5.1**
 - ✅ Simulator - Builds. AppsFlyer init shows success and reports attributions.
@@ -117,15 +119,25 @@ Official AppsFlyer Testing Docs: https://support.appsflyer.com/hc/en-us/articles
 
 **XCode 12.4**
 - ✅ Simulator - Builds. AppsFlyer init shows success and reports organic attributions.
-- ❌ Device - Fails build with message:
-> ```In /Users/brandensoropia/Library/Developer/Xcode/DerivedData/ReactNativeAppsflyer-aqckwkdpnacpiwfgqrmtxiosvotv/Build/Products/Debug-iphoneos/AppsFlyerLib.framework/AppsFlyerLib(AFSDKDevice.o), building for iOS, but linking in object file built for Mac Catalyst, file '/Users/brandensoropia/Library/Developer/Xcode/DerivedData/ReactNativeAppsflyer-aqckwkdpnacpiwfgqrmtxiosvotv/Build/Products/Debug-iphoneos/AppsFlyerLib.framework/AppsFlyerLib' for architecture arm64```
+- ❌ Device - Failed build with same AppsFlyer issue as above.
 
-### Flipper-Folly Enabled
+### Flipper-Folly Enabled only
 
 **XCode 12.5.1**
-- ❌ Simulator - Fails build. Same AppsFlyer error message as above. But also various some Flipper-Folly errors too
+- ❌ Simulator - Fails build. Same AppsFlyer error message as above. But also various some Flipper-Folly errors too.
 - ❌ Device - Fails build. Same AppsFlyer error message as above, but not Flipper-Folly errors.
 
 **XCode 12.4**
 - ❌ Simulator - Fails build only due to Flipper-Folly issue.
-- ❌ Device - 
+- ❌ Device - Failed build with same AppsFlyer issue as above.
+
+### “Build Active Architecture Only” to all “Yes”, with Flipper-Folly disabled
+
+**Both XCode 12.4 and XCode 12.5.1**
+- ❌ Device - Failed build with same AppsFlyer issue as above.
+
+### Ignore `arm64`, with Flipper-Folly disabled
+
+**XCode 12.4 and XCode 12.5.1**
+- ❌ Device - Failed build with same AppsFlyer issue as above.
+
